@@ -1,0 +1,70 @@
+режим для разработки:
+npm init -y
+npm i -D typescript
+npm i @types/node -D
+npx tsc --init
+
+
+в package.json :
+{
+  "name": "ts-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module", // Добавили в package.json 
+  "scripts": {
+   "dev": "npx nodemon", // Добавили в package.json 
+     "build": "rimraf ./build && npx tsc", // Добавили в package.json 
+    "start": "npm run build && node build/index.js" // Добавили в package.json 
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^24.2.1",
+    "typescript": "^5.9.2"
+  }
+}
+
+в tsconfig.json 
+{
+  "compilerOptions": {
+   
+    "target": "es2018",
+    "lib": ["ES6"],
+    "module": "nodenext",
+    "rootDir": "./src",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "sourceMap": true,
+    "outDir": "./build",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true
+   
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"],
+  "lib": ["esnext"],
+  "ts-node": {
+    "esm": true
+  }
+}
+
+npm i -D ts-node nodemon
+
+
+npm run dev
+
+режим для продакшина:
+
+npm i -D rimraf  для очищение ./build  (rm -rf ./build)
+
+npx tsc
+
+
+npm start // запуск программы
